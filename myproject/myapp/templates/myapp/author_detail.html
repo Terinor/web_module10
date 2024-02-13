@@ -1,0 +1,15 @@
+<!-- author_detail.html -->
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h2>{{ author.name }}</h2>
+<p>Born: {{ author.date_of_birth }}</p>
+<p>{{ author.bio }}</p>
+
+<h3>Quotes:</h3>
+<ul>
+    {% for quote in author.quote_set.all %}
+    <li>"{{ quote.text }}"</li>
+    {% endfor %}
+</ul>
+{% endblock %}

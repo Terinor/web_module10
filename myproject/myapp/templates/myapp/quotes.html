@@ -1,0 +1,23 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h2>All Quotes</h2>
+
+<!-- Кнопка додавання нового автора -->
+{% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'myapp:add_author' %}" class="button">Додати автора</a>
+        <a href="{% url 'myapp:add_quote' %}" class="button">Додати цитату</a>
+    </div>
+{% endif %}
+
+<ul>
+    {% for quote in quotes %}
+    <li>
+        "{{ quote.text }}" -
+        <a href="{% url 'myapp:author_detail' author_id=quote.author.id %}">{{ quote.author.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
